@@ -8,6 +8,8 @@ import com.ruoyi.spj.mapper.SMapper;
 import com.ruoyi.spj.domain.S;
 import com.ruoyi.spj.service.ISService;
 
+import static com.ruoyi.common.utils.uuid.Seq.getId;
+
 /**
  * 供应商SService业务层处理
  * 

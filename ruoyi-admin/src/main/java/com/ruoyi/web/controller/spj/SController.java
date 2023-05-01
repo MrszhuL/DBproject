@@ -96,7 +96,7 @@ public class SController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('spj:S:remove')")
     @Log(title = "供应商S", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{snos}")
+    @DeleteMapping("/{snos}")
     public AjaxResult remove(@PathVariable String[] snos)
     {
         return toAjax(sService.deleteSBySnos(snos));

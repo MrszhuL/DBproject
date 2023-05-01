@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="100px">
       <el-form-item label="零件代码" prop="pno">
         <el-input
           v-model="queryParams.pno"
@@ -91,7 +91,7 @@
       <el-table-column label="零件名" align="center" prop="pname" />
       <el-table-column label="颜色" align="center" prop="color" />
       <el-table-column label="重量" align="center" prop="weight" />
-      <el-table-column label="备注" align="center" prop="remark" />
+<!--      <el-table-column label="备注" align="center" prop="remark" />-->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -111,7 +111,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -123,6 +123,9 @@
     <!-- 添加或修改零件表P对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="零件编号" prop="pno">
+          <el-input v-model="form.pno" placeholder="请输入零件编号" />
+        </el-form-item>
         <el-form-item label="零件名" prop="pname">
           <el-input v-model="form.pname" placeholder="请输入零件名" />
         </el-form-item>
@@ -254,7 +257,7 @@ export default {
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.pno != null) {
+          if (this.form.remark == null || this.form.remark == "") {
             updateP(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;

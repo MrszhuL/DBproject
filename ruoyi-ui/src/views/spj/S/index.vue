@@ -124,7 +124,7 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="供应商代码" prop="sno">
-          <el-input v-model="form.sname" placeholder="请输入供应商代码" />
+          <el-input v-model="form.sno" placeholder="请输入供应商代码" />
         </el-form-item>
         <el-form-item label="供应商姓名" prop="sname">
           <el-input v-model="form.sname" placeholder="请输入供应商姓名" />
@@ -257,7 +257,7 @@ export default {
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.sno != null) {
+          if (this.form.remark == null || this.form.remark == "") {
             updateS(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;

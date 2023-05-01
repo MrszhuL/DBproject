@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="130px">
       <el-form-item label="工程项目代码" prop="jno">
         <el-input
           v-model="queryParams.jno"
@@ -82,7 +82,7 @@
       <el-table-column label="工程项目代码" align="center" prop="jno" />
       <el-table-column label="工程项目名" align="center" prop="jname" />
       <el-table-column label="工程项目所在城市" align="center" prop="city" />
-      <el-table-column label="备注" align="center" prop="remark" />
+<!--      <el-table-column label="备注" align="center" prop="remark" />-->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -102,7 +102,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -114,6 +114,9 @@
     <!-- 添加或修改工程项目表J对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="工程项目代码" prop="jno">
+          <el-input v-model="form.jno" placeholder="请输入工程项目代码" />
+        </el-form-item>
         <el-form-item label="工程项目名" prop="jname">
           <el-input v-model="form.jname" placeholder="请输入工程项目名" />
         </el-form-item>
@@ -240,7 +243,7 @@ export default {
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.jno != null) {
+          if (this.form.remark == null || this.form.remark == "") {
             updateJ(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
